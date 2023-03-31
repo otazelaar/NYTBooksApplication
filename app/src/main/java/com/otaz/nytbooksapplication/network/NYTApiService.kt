@@ -1,15 +1,22 @@
 package com.otaz.nytbooksapplication.network
 
-import com.otaz.nytbooksapplication.network.responses.BookResponse
+import com.otaz.nytbooksapplication.network.model.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
+/**
+ * Use offset to do pagination for the list to handle if list is larger than 20
+ * the current list size for hardcover fiction is of size 15. I am not sure how common it is
+ * for the size to be larger than this but we should account for it.
+ */
 interface NYTApiService {
 
-        @GET("search/movie")
-        suspend fun getBookList(
-            @Query("api_key") apikey: String,
-            @Query("query", encoded = true) query: String,
-            @Query("page") page: Int,
-        ): BookResponse
+    // use "current" for current date, o/w specify date
+    @GET("lists/{date}/{list}.json")
+    suspend fun getCurrentBestSellerListByCategory(
+        @Path("date") date: String,
+        @Path("list") category: String,
+        @Query("api-key") apikey: String,
+    ): Response
 }
