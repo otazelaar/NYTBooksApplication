@@ -1,8 +1,10 @@
 package com.otaz.nytbooksapplication.domain.model
 
+import com.otaz.nytbooksapplication.network.model.BookDto
+
 data class Results(
     val bestsellers_date: String,
-    val books: List<Book>,
+    val books: List<BookDto>,
     val display_name: String,
     val list_name: String,
     val list_name_encoded: String,

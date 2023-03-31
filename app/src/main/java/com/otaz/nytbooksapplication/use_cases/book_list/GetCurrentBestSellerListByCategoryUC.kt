@@ -3,6 +3,8 @@ package com.otaz.nytbooksapplication.use_cases.book_list
 import com.otaz.nytbooksapplication.domain.DataState
 import com.otaz.nytbooksapplication.domain.model.Book
 import com.otaz.nytbooksapplication.network.NYTApiService
+import com.otaz.nytbooksapplication.network.mappers.BookDtoMapper
+import com.otaz.nytbooksapplication.network.mappers.ResultsDtoMapper
 import com.otaz.nytbooksapplication.network.model.toBook
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -13,6 +15,7 @@ import kotlinx.coroutines.flow.flow
 
 class GetCurrentBestSellerListByCategoryUC(
     private val nytApiService: NYTApiService,
+    private val bookDtoMapper: BookDtoMapper,
 ) {
     fun execute(
         date: String,
@@ -42,8 +45,10 @@ class GetCurrentBestSellerListByCategoryUC(
         category: String,
         apikey: String,
     ): List<Book> {
-        return nytApiService.getCurrentBestSellerListByCategory(
-            date, category, apikey
-        ).resultsDto.books.map { it.toBook() }
+        return bookDtoMapper.mapToDomainModel(
+            nytApiService.getCurrentBestSellerListByCategory(
+                date, category, apikey
+            )
+        )
     }
 }
