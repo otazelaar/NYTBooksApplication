@@ -1,7 +1,7 @@
 package com.otaz.nytbooksapplication.presentation.ui.book_detail_screen
 
 /**
- * This class is used to trigger events related to the MovieDetails
+ * This class is used to trigger events related to the BookDetails
  */
 
 sealed class BookDetailEvent {

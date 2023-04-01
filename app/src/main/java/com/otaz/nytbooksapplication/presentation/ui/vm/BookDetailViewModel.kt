@@ -10,7 +10,7 @@ import androidx.lifecycle.viewModelScope
 import com.otaz.nytbooksapplication.domain.model.Book
 import com.otaz.nytbooksapplication.presentation.ui.book_detail_screen.BookDetailEvent
 import com.otaz.nytbooksapplication.presentation.ui.book_detail_screen.BookDetailEvent.*
-import com.otaz.nytbooksapplication.use_cases.book_detail.GetSavedBookUC
+import com.otaz.nytbooksapplication.use_cases.GetSavedBookUC
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -46,7 +46,7 @@ class BookDetailViewModel @Inject constructor(
     }
 
     private fun getSavedBook(book_id: String){
-        Log.d(TAG, "SavedMoviesListViewModel: getSavedMovies: running")
+        Log.d(TAG, "SavedBooksListViewModel: getSavedBook: running")
 
         getSavedBookUC.execute(
             book_id = book_id,

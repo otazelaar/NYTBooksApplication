@@ -43,7 +43,7 @@ fun BookDetailScreen(
                     if(loading && book == null){
                         ShimmerBookListCardItem(imageHeight = IMAGE_HEIGHT.dp)
                     } else if(!loading && book == null && onLoad){
-                        // TODO("Show Invalid Movie")
+                        // TODO("Show Invalid Book")
                     } else if(book != null){
                         BookDetailView(
                             book = book,

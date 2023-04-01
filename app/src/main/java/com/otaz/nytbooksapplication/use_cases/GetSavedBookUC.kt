@@ -1,4 +1,4 @@
-package com.otaz.nytbooksapplication.use_cases.book_detail
+package com.otaz.nytbooksapplication.use_cases
 
 import com.otaz.nytbooksapplication.domain.DataState
 import com.otaz.nytbooksapplication.domain.model.Book

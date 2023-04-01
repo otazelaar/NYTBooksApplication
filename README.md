@@ -7,7 +7,8 @@
   - Author
   - Description
 
-- Search lists using category chips to see lists
+- Search different categories by choosing a category chip
+- Search any books present in the database using search bar
 
 # Features
 - Light & dark Mode to match your system preferences
@@ -31,6 +32,7 @@
 
 # What I learned?
 - Compose navigation
+- Challenged to create functionality not present in the API
 
 # Intention
 - To gain real world experience in modern android app development

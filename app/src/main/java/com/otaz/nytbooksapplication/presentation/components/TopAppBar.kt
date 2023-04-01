@@ -1,29 +1,32 @@
 package com.otaz.nytbooksapplication.presentation.components
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Modifier
+import androidx.compose.ui.*
+import androidx.compose.ui.focus.FocusManager
+import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.unit.dp
-import com.otaz.nytbooksapplication.presentation.ui.book_list_screen.BookCategory
-import com.otaz.nytbooksapplication.presentation.ui.book_list_screen.getAllBookCategories
-import kotlinx.coroutines.launch
+
+/**
+ * Make sure searching feature can unselects the category chip after searching as we are no longer
+ *      searching in a specific category but the entire database of books. I may need to implement a
+ *      new API GET function to search all of the books in history rather and determine if they are
+ *      currently on the list or not.
+ *
+ */
 
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun TopAppBar(
-    categoryScrollPosition: Int,
-    selectedCategory: BookCategory?,
-    onSelectedCategoryChanged: (String) -> Unit,
-    onChangedCategoryScrollPosition: (Int) -> Unit,
-    onExecuteSearch: () -> Unit,
+    onExecuteSearchBook: () -> Unit,
+    focusRequester: FocusRequester,
+    focusManager: FocusManager,
+    expression: String,
+    onQueryChanged: (String) -> Unit,
+    resetForNextSearch: () -> Unit,
 ) {
     Surface(
         modifier = Modifier.fillMaxWidth(),
@@ -31,34 +34,14 @@ fun TopAppBar(
         elevation = 8.dp,
     ) {
         Column {
-            val scrollState = rememberScrollState()
-            val coroutineScope = rememberCoroutineScope()
-
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 8.dp, bottom = 8.dp)
-                    .horizontalScroll(scrollState),
-            ) {
-                // restore scroll position after rotation
-                coroutineScope.launch {
-                    scrollState.scrollTo(categoryScrollPosition)
-                }
-
-                for (category in getAllBookCategories()) {
-                    BookCategoryChip(
-                        category = category.value,
-                        isSelected = selectedCategory == category,
-                        onSelectedCategoryChanged = {
-                            onSelectedCategoryChanged(it) // it = category.value
-                            onChangedCategoryScrollPosition(scrollState.value)
-                        },
-                        onExecuteSearch = {
-                            onExecuteSearch()
-                        },
-                    )
-                }
-            }
+            SearchBar(
+                onExecuteSearch = onExecuteSearchBook,
+                focusRequester = focusRequester,
+                focusManager = focusManager,
+                expression = expression,
+                onQueryChanged = onQueryChanged,
+                resetForNextSearch = resetForNextSearch,
+            )
         }
     }
 }

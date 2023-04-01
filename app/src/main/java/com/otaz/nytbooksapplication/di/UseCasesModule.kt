@@ -2,8 +2,8 @@ package com.otaz.nytbooksapplication.di
 
 import com.otaz.nytbooksapplication.network.NYTApiService
 import com.otaz.nytbooksapplication.persistance.BookDao
-import com.otaz.nytbooksapplication.use_cases.book_detail.GetSavedBookUC
-import com.otaz.nytbooksapplication.use_cases.book_list.GetBookListUC
+import com.otaz.nytbooksapplication.use_cases.GetSavedBookUC
+import com.otaz.nytbooksapplication.use_cases.SearchBookUC
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,11 +16,11 @@ object UseCasesModule {
 
     @ViewModelScoped
     @Provides
-    fun provideGetCurrentBestSellerListByCategoryUC(
+    fun SearchBookUC(
         nytApiService: NYTApiService,
         bookDao: BookDao,
-    ): GetBookListUC {
-        return GetBookListUC(
+    ): SearchBookUC {
+        return SearchBookUC(
             nytApiService = nytApiService,
             bookDao = bookDao,
         )

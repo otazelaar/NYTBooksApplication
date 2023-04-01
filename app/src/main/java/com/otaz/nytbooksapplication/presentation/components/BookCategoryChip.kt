@@ -20,7 +20,7 @@ fun BookCategoryChip(
     category: String,
     isSelected: Boolean = false,
     onSelectedCategoryChanged: (String) -> Unit,
-    onExecuteSearch: () -> Unit,
+    onExecuteSearchCategory: () -> Unit,
 ){
     Surface(
         modifier = Modifier
@@ -42,7 +42,7 @@ fun BookCategoryChip(
                     value = isSelected,
                     onValueChange = {
                         onSelectedCategoryChanged(category)
-                        onExecuteSearch()
+                        onExecuteSearchCategory()
                     }
                 )
         ) {
