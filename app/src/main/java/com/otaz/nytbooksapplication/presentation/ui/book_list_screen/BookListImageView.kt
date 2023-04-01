@@ -1,6 +1,7 @@
 package com.otaz.nytbooksapplication.presentation.ui.book_list_screen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.Card
@@ -11,16 +12,19 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.otaz.nytbooksapplication.domain.model.Book
-import com.otaz.nytbooksapplication.presentation.compose.components.loadPicture
-import com.otaz.nytbooksapplication.presentation.compose.constants.DEFAULT_BOOK_IMAGE
+import com.otaz.nytbooksapplication.presentation.components.loadPicture
+import com.otaz.nytbooksapplication.presentation.constants.DEFAULT_BOOK_IMAGE
 
 @Composable
 fun BookListImageView(
     book: Book,
+    onClick: () -> Unit,
 ){
     Card(
         shape = MaterialTheme.shapes.small,
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick),
     ) {
         val image = book.book_image.let {
             loadPicture(

@@ -1,4 +1,4 @@
-package com.otaz.nytbooksapplication.presentation.compose.theme
+package com.otaz.nytbooksapplication.presentation.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.graphics.Color

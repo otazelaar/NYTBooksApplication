@@ -14,7 +14,7 @@ interface NYTApiService {
 
     // use "current" for current date, o/w specify date
     @GET("lists/{date}/{list}.json")
-    suspend fun getCurrentBestSellerListByCategory(
+    suspend fun getBookListFromNetwork(
         @Path("date") date: String,
         @Path("list") category: String,
         @Query("api-key") apikey: String,

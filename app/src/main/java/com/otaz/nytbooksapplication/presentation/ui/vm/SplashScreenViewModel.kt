@@ -1,4 +1,4 @@
-package com.otaz.nytbooksapplication.presentation.ui.splash_screen
+package com.otaz.nytbooksapplication.presentation.ui.vm
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

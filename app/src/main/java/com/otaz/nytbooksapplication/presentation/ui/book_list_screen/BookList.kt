@@ -10,12 +10,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.otaz.nytbooksapplication.domain.model.Book
-import com.otaz.nytbooksapplication.presentation.compose.components.ShimmerBookListCardItem
+import com.otaz.nytbooksapplication.presentation.components.ShimmerBookListCardItem
+import com.otaz.nytbooksapplication.presentation.navigation.Screen
 
 @Composable
 fun BookList(
     loading: Boolean,
     books: List<Book>,
+    onNavigateToBookDetailScreen: (String) -> Unit,
 ){
     Box(
         modifier = Modifier
@@ -33,7 +35,11 @@ fun BookList(
                     items = books
                 ){_, book ->
                     BookListView(
-                        book = book
+                        book = book,
+                        onClick = {
+                            val route = Screen.BookDetail.route + "/${book.primary_isbn13}"
+                            onNavigateToBookDetailScreen(route)
+                        },
                     )
                 }
             }

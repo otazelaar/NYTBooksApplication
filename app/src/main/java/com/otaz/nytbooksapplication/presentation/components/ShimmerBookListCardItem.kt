@@ -1,4 +1,4 @@
-package com.otaz.nytbooksapplication.presentation.compose.components
+package com.otaz.nytbooksapplication.presentation.components
 
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.layout.BoxWithConstraints
