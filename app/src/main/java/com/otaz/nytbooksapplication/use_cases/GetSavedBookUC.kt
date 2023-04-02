@@ -2,13 +2,13 @@ package com.otaz.nytbooksapplication.use_cases
 
 import com.otaz.nytbooksapplication.domain.DataState
 import com.otaz.nytbooksapplication.domain.model_fake.SBResult
-import com.otaz.nytbooksapplication.persistance.BookDao
+import com.otaz.nytbooksapplication.persistance.ArticleDao
 import com.otaz.nytbooksapplication.persistance.toSBResult
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class GetSavedBookUC(
-    private val bookDao: BookDao,
+    private val articleDao: ArticleDao,
 ) {
     fun execute(
         title: String
@@ -16,7 +16,7 @@ class GetSavedBookUC(
         try {
             emit(DataState.loading())
 
-            val savedBook = bookDao.getBookById(title)
+            val savedBook = articleDao.getArticleById(title)
             val cachedBook = savedBook?.toSBResult()
 
             emit(DataState.success(cachedBook))

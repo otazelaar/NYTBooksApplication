@@ -2,8 +2,7 @@ package com.otaz.nytbooksapplication.di
 
 import androidx.room.Room
 import com.otaz.nytbooksapplication.persistance.AppDatabase
-import com.otaz.nytbooksapplication.persistance.BookDao
-import com.otaz.nytbooksapplication.persistance.BookEntity
+import com.otaz.nytbooksapplication.persistance.ArticleDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,7 +24,7 @@ object CacheModule {
 
     @Singleton
     @Provides
-    fun provideBookDao(app: AppDatabase): BookDao {
-        return app.bookDao()
+    fun provideBookDao(app: AppDatabase): ArticleDao {
+        return app.articleDao()
     }
 }

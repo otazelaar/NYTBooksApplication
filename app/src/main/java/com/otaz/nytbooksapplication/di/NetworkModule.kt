@@ -22,7 +22,7 @@ object NetworkModule {
         val client = OkHttpClient.Builder()
             .connectTimeout(100, TimeUnit.SECONDS)
             .readTimeout(100, TimeUnit.SECONDS).build();
-        return Retrofit.Builder().baseUrl("https://api.nytimes.com/svc/books/v3/")
+        return Retrofit.Builder().baseUrl("https://api.nytimes.com/svc/")
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -33,6 +33,6 @@ object NetworkModule {
     @Provides
     @Named("nyt_apikey")
     fun provideNYTApiKey(): String{
-        return "TYqRZecpZgXeXNGSGfHmhwmWNw2jsx1N"
+        return "6pWmNGU1xTNiQSgwjStDGNTS6ABwscRd"
     }
 }

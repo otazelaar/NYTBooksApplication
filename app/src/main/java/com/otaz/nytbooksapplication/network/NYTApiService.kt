@@ -1,14 +1,17 @@
 package com.otaz.nytbooksapplication.network
 
-import com.otaz.nytbooksapplication.network.fake.SBResponse
+import com.otaz.nytbooksapplication.network.model.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+/**
+ * 
+ */
+
 interface NYTApiService {
 
-    @GET("lists/best-sellers/history.json")
-    suspend fun searchBookListHistoryByTitle(
+    @GET("mostpopular/v2/viewed/1.json")
+    suspend fun getListOfArticlesViewedOneDay(
         @Query("api-key") apikey: String,
-        @Query("title") title: String,
-    ): SBResponse
+    ): Response
 }

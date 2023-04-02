@@ -1,7 +1,7 @@
 package com.otaz.nytbooksapplication.di
 
 import com.otaz.nytbooksapplication.network.NYTApiService
-import com.otaz.nytbooksapplication.persistance.BookDao
+import com.otaz.nytbooksapplication.persistance.ArticleDao
 import com.otaz.nytbooksapplication.use_cases.GetSavedBookUC
 import com.otaz.nytbooksapplication.use_cases.SearchBookUC
 import dagger.Module
@@ -18,21 +18,21 @@ object UseCasesModule {
     @Provides
     fun searchBookUC(
         nytApiService: NYTApiService,
-        bookDao: BookDao,
+        articleDao: ArticleDao,
     ): SearchBookUC {
         return SearchBookUC(
             nytApiService = nytApiService,
-            bookDao = bookDao,
+            articleDao = articleDao,
         )
     }
 
     @ViewModelScoped
     @Provides
     fun provideGetSavedBook(
-        bookDao: BookDao,
+        articleDao: ArticleDao,
     ): GetSavedBookUC {
         return GetSavedBookUC(
-            bookDao = bookDao,
+            articleDao = articleDao,
         )
     }
 }

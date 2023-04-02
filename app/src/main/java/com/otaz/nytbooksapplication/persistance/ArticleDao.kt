@@ -13,11 +13,11 @@ import androidx.room.*
  */
 
 @Dao
-interface BookDao {
+interface ArticleDao {
 
     @Upsert
-    suspend fun insertBooks(books: List<SBResultEntity>): LongArray
+    suspend fun insertArticles(books: List<ArticleEntity>): LongArray
 
-    @Query("SELECT * FROM books WHERE title = :title")
-    suspend fun getBookById(title: String): SBResultEntity?
+    @Query("SELECT * FROM books WHERE id = :id")
+    suspend fun getArticleById(id: String): ArticleEntity?
 }
