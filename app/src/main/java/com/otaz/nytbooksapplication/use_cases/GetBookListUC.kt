@@ -1,13 +1,11 @@
-package com.otaz.nytbooksapplication.use_cases.book_list
+package com.otaz.nytbooksapplication.use_cases
 
 import com.otaz.nytbooksapplication.domain.DataState
 import com.otaz.nytbooksapplication.domain.model.Book
 import com.otaz.nytbooksapplication.domain.model.toBookEntity
 import com.otaz.nytbooksapplication.network.NYTApiService
 import com.otaz.nytbooksapplication.network.model.toBook
-import com.otaz.nytbooksapplication.network.model.toBookEntity
 import com.otaz.nytbooksapplication.persistance.BookDao
-import com.otaz.nytbooksapplication.persistance.BookEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 

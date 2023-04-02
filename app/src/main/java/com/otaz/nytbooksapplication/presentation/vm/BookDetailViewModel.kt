@@ -1,4 +1,4 @@
-package com.otaz.nytbooksapplication.presentation.ui.vm
+package com.otaz.nytbooksapplication.presentation.vm
 
 import android.content.ContentValues.TAG
 import android.util.Log
@@ -8,9 +8,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.otaz.nytbooksapplication.domain.model.Book
-import com.otaz.nytbooksapplication.presentation.ui.book_detail_screen.BookDetailEvent
-import com.otaz.nytbooksapplication.presentation.ui.book_detail_screen.BookDetailEvent.*
-import com.otaz.nytbooksapplication.use_cases.book_detail.GetSavedBookUC
+import com.otaz.nytbooksapplication.presentation.ui.BookDetailEvent
+import com.otaz.nytbooksapplication.presentation.ui.BookDetailEvent.*
+import com.otaz.nytbooksapplication.use_cases.GetSavedBookUC
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

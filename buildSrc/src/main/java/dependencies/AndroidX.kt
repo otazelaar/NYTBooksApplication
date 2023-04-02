@@ -34,4 +34,5 @@ object AndroidX {
 
   // Splash Screen
   const val splash = "androidx.core:core-splashscreen:${Versions.splash}"
+
 }

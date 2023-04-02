@@ -14,7 +14,7 @@ val Teal300 = Color(0xFF1AC6FF)
 val Grey1 = Color(0xFF353535)
 val Grey2 = Color(0xFF6D6D6D)
 
-val Black1 = Color(0xFF1F1F1F)
+val DarkGrey = Color(0xFF1F1F1F)
 val Black2 = Color(0xFF000000)
 
 val RedErrorDark = Color(0xFFB00020)

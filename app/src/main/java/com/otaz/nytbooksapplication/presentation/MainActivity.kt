@@ -14,10 +14,10 @@ import androidx.navigation.navArgument
 import com.otaz.nytbooksapplication.di.BaseApplication
 import com.otaz.nytbooksapplication.presentation.navigation.Screen
 import com.otaz.nytbooksapplication.presentation.ui.BookDetailScreen
-import com.otaz.nytbooksapplication.presentation.ui.book_list_screen.BookListScreen
-import com.otaz.nytbooksapplication.presentation.ui.vm.BookDetailViewModel
-import com.otaz.nytbooksapplication.presentation.ui.vm.BookListViewModel
-import com.otaz.nytbooksapplication.presentation.ui.vm.SplashScreenViewModel
+import com.otaz.nytbooksapplication.presentation.ui.BookListScreen
+import com.otaz.nytbooksapplication.presentation.vm.BookDetailViewModel
+import com.otaz.nytbooksapplication.presentation.vm.BookListViewModel
+import com.otaz.nytbooksapplication.presentation.vm.SplashScreenViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

@@ -4,7 +4,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.otaz.nytbooksapplication.domain.model.Book
-import com.otaz.nytbooksapplication.network.model.BookDto
 
 @Entity(tableName = "books")
 data class BookEntity(
@@ -70,4 +69,8 @@ fun BookEntity.toBook(): Book {
         title = title,
         weeks_on_list = weeks_on_list
     )
+}
+
+fun entitiesToBook(bookEntities: List<BookEntity>): List<Book> {
+    return bookEntities.map { it.toBook() }
 }

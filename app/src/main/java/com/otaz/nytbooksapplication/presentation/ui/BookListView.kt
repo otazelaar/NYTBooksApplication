@@ -1,4 +1,4 @@
-package com.otaz.nytbooksapplication.presentation.ui.book_list_screen
+package com.otaz.nytbooksapplication.presentation.ui
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*

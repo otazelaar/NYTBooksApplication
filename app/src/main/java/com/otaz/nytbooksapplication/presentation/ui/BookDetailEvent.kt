@@ -1,4 +1,4 @@
-package com.otaz.nytbooksapplication.presentation.ui.book_detail_screen
+package com.otaz.nytbooksapplication.presentation.ui
 
 /**
  * This class is used to trigger events related to the MovieDetails

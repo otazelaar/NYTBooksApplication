@@ -21,6 +21,18 @@ interface BookDao {
     @Query("SELECT * FROM books WHERE id = :id")
     suspend fun getBookById(id: String): BookEntity?
 
+    @Query("SELECT * FROM books WHERE title LIKE '%' || :search || '%'")
+    fun loadBooks(search: String?): List<BookEntity>
+
+//    @Query("SELECT * FROM books WHERE title LIKE '%' || :search || '%'")
+//    fun loadBooks(search: String?): Flowable<List<BookEntity>>
+
+//    @Query("SELECT * FROM database WHERE name LIKE '%' || : arg0 || '%'")
+//    fun find(search:String?):List<BookEntity>
+
+//    @Query("SELECT * FROM hamster WHERE name LIKE '%' || :search || '%'")
+//    fun loadHamsters(search: String?): Flowable<List<Hamster>>
+
 //    @Insert(onConflict = OnConflictStrategy.REPLACE)
 //    suspend fun insertBook(book: BookEntity): Long
 //

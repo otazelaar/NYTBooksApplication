@@ -33,4 +33,5 @@ object Versions {
   const val junit_jupiter = "5.7.0"
   const val datastore = "1.0.0-alpha06"
   const val splash = "1.0.0"
+  const val accompanist = "0.27.0"
 }

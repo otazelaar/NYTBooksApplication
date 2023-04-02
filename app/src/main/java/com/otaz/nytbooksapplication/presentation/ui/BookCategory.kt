@@ -1,6 +1,6 @@
-package com.otaz.nytbooksapplication.presentation.ui.book_list_screen
+package com.otaz.nytbooksapplication.presentation.ui
 
-import com.otaz.nytbooksapplication.presentation.ui.book_list_screen.BookCategory.*
+import com.otaz.nytbooksapplication.presentation.ui.BookCategory.*
 
 enum class BookCategory(val value: String){
     GET_HARDCOVER_FICTION("Hardcover Fiction"),

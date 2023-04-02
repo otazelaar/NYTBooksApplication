@@ -82,6 +82,7 @@ dependencies {
 
     implementation Google.material
     implementation Google.hilt_android
+    implementation Google.accompanist_ui_controller
 
     implementation Glide.glide
 
@@ -108,4 +109,5 @@ dependencies {
     implementation InstrumentationTest.compose_ui
     implementation AndroidX.compose_ui_preview
     debugImplementation AndroidX.compose_ui_preview_tooling
+
 }

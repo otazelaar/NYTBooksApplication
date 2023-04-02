@@ -1,18 +1,24 @@
 package com.otaz.nytbooksapplication.presentation.ui
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import com.otaz.nytbooksapplication.presentation.components.BookDetailView
-import com.otaz.nytbooksapplication.presentation.components.ShimmerBookListCardItem
+import com.otaz.nytbooksapplication.R
+import com.otaz.nytbooksapplication.presentation.components.*
+import com.otaz.nytbooksapplication.presentation.constants.DEFAULT_BOOK_IMAGE
 import com.otaz.nytbooksapplication.presentation.constants.IMAGE_HEIGHT
 import com.otaz.nytbooksapplication.presentation.theme.AppTheme
-import com.otaz.nytbooksapplication.presentation.ui.book_detail_screen.BookDetailEvent.*
-import com.otaz.nytbooksapplication.presentation.ui.vm.BookDetailViewModel
+import com.otaz.nytbooksapplication.presentation.ui.BookDetailEvent.*
+import com.otaz.nytbooksapplication.presentation.vm.BookDetailViewModel
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -45,9 +51,13 @@ fun BookDetailScreen(
                     } else if(!loading && book == null && onLoad){
                         // TODO("Show Invalid Movie")
                     } else if(book != null){
-                        BookDetailView(
-                            book = book,
-                        )
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                        ) {
+                            ImageCard(book = book)
+                            DetailsCard(book = book)
+                        }
                     }
                 }
             }
