@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NYTBooksApplication</string>
+    <string name="search_placeholder">Search Book</string>
 </resources>

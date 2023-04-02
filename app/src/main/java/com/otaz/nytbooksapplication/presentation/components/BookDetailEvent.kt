@@ -1,4 +1,4 @@
-package com.otaz.nytbooksapplication.presentation.ui.book_detail_screen
+package com.otaz.nytbooksapplication.presentation.components
 
 /**
  * This class is used to trigger events related to the MovieDetails
@@ -7,6 +7,6 @@ package com.otaz.nytbooksapplication.presentation.ui.book_detail_screen
 sealed class BookDetailEvent {
 
     data class GetBookDetailEvent(
-        val book_id: String,
+        val title: String,
     ): BookDetailEvent()
 }

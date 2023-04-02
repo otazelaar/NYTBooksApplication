@@ -1,4 +1,4 @@
-package com.otaz.nytbooksapplication.presentation.ui.vm
+package com.otaz.nytbooksapplication.presentation.vm
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

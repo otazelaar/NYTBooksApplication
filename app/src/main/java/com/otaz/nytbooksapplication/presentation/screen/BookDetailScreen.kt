@@ -11,16 +11,16 @@ import com.otaz.nytbooksapplication.presentation.components.BookDetailView
 import com.otaz.nytbooksapplication.presentation.components.ShimmerBookListCardItem
 import com.otaz.nytbooksapplication.presentation.constants.IMAGE_HEIGHT
 import com.otaz.nytbooksapplication.presentation.theme.AppTheme
-import com.otaz.nytbooksapplication.presentation.ui.book_detail_screen.BookDetailEvent.*
-import com.otaz.nytbooksapplication.presentation.ui.vm.BookDetailViewModel
+import com.otaz.nytbooksapplication.presentation.components.BookDetailEvent.*
+import com.otaz.nytbooksapplication.presentation.vm.BookDetailViewModel
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun BookDetailScreen(
     viewModel: BookDetailViewModel,
-    bookId: String?,
+    title: String?,
 ) {
-    if(bookId == null){
+    if(title == null){
         ShimmerBookListCardItem(
             imageHeight = 250.dp,
             padding = 8.dp
@@ -32,7 +32,7 @@ fun BookDetailScreen(
 
         if (!onLoad) {
             viewModel.onLoad.value = true
-            viewModel.onTriggerEvent(GetBookDetailEvent(bookId))
+            viewModel.onTriggerEvent(GetBookDetailEvent(title))
         }
 
         AppTheme{

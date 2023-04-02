@@ -1,4 +1,4 @@
-package com.otaz.nytbooksapplication.presentation.ui.book_list_screen
+package com.otaz.nytbooksapplication.presentation.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -9,11 +9,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.otaz.nytbooksapplication.domain.model.Book
+import com.otaz.nytbooksapplication.domain.model_fake.SBResult
 import java.util.*
 
 @Composable
 fun BookListView(
-    book: Book,
+    book: SBResult,
     onClick: () -> Unit,
 ){
     Column{

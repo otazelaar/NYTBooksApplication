@@ -1,4 +1,4 @@
-package com.otaz.nytbooksapplication.presentation.ui.book_list_screen
+package com.otaz.nytbooksapplication.presentation.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -10,13 +10,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.otaz.nytbooksapplication.domain.model.Book
-import com.otaz.nytbooksapplication.presentation.components.ShimmerBookListCardItem
+import com.otaz.nytbooksapplication.domain.model_fake.SBResult
 import com.otaz.nytbooksapplication.presentation.navigation.Screen
 
 @Composable
 fun BookList(
     loading: Boolean,
-    books: List<Book>,
+    books: List<SBResult>,
     onNavigateToBookDetailScreen: (String) -> Unit,
 ){
     Box(
@@ -37,7 +37,7 @@ fun BookList(
                     BookListView(
                         book = book,
                         onClick = {
-                            val route = Screen.BookDetail.route + "/${book.primary_isbn13}"
+                            val route = Screen.BookDetail.route + "/${book.title}"
                             onNavigateToBookDetailScreen(route)
                         },
                     )

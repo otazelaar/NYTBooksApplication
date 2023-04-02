@@ -16,23 +16,8 @@ import androidx.room.*
 interface BookDao {
 
     @Upsert
-    suspend fun insertBooks(books: List<BookEntity>): LongArray
+    suspend fun insertBooks(books: List<SBResultEntity>): LongArray
 
-    @Query("SELECT * FROM books WHERE id = :id")
-    suspend fun getBookById(id: String): BookEntity?
-
-//    @Insert(onConflict = OnConflictStrategy.REPLACE)
-//    suspend fun insertBook(book: BookEntity): Long
-//
-//    @Query("DELETE FROM books WHERE id = :primaryKey")
-//    suspend fun deleteBook(primaryKey: String): Int
-//
-//    @Query(" SELECT * FROM books ")
-//    suspend fun getAllBooks(): List<BookEntity>
-//
-//    @Query("DELETE FROM books WHERE id IN (:ids)")
-//    suspend fun deleteBooks(ids: List<String>): Int
-//
-//    @Query("DELETE FROM books")
-//    suspend fun deleteAllBooks()
+    @Query("SELECT * FROM books WHERE title = :title")
+    suspend fun getBookById(title: String): SBResultEntity?
 }
