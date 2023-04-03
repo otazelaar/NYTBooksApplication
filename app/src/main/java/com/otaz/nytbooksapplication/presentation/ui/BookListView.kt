@@ -17,7 +17,7 @@ fun BookListView(
     onClick: () -> Unit,
 ){
     Column{
-        BookListImageView(
+        ListImageView(
             book = book,
             onClick = onClick,
         )

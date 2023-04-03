@@ -1,33 +1,44 @@
-package com.otaz.nytbooksapplication.presentation.components
+package com.otaz.nytbooksapplication.presentation.ui
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.otaz.nytbooksapplication.domain.model.Book
+import com.otaz.nytbooksapplication.presentation.components.loadPicture
 import com.otaz.nytbooksapplication.presentation.constants.DEFAULT_BOOK_IMAGE
-import com.otaz.nytbooksapplication.presentation.constants.IMAGE_HEIGHT
 
 @Composable
-fun ImageCard(
+fun ListImageView(
     book: Book,
+    onClick: () -> Unit,
 ){
-    book.book_image.let { url ->
-        val image = loadPicture(
-            url = url,
-            defaultImage = DEFAULT_BOOK_IMAGE
-        ).value
+    Card(
+        shape = MaterialTheme.shapes.small,
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick),
+    ) {
+        val image = book.book_image.let {
+            loadPicture(
+                url = it,
+                defaultImage = DEFAULT_BOOK_IMAGE,
+            ).value
+        }
         image?.let { img ->
             Image(
                 bitmap = img.asImageBitmap(),
+                contentDescription = "Book List Image",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(IMAGE_HEIGHT.dp),
-                contentDescription = "Image",
+                    .height(630.dp),
                 contentScale = ContentScale.Crop,
             )
         }

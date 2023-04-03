@@ -22,25 +22,6 @@ data class BookDto(
     @SerializedName("weeks_on_list") var weeks_on_list: Int
 )
 
-fun BookDto.toBookEntity(): BookEntity {
-    return BookEntity(
-        primary_isbn13 = primary_isbn13,
-        amazon_product_url = amazon_product_url,
-        author = author,
-        book_image = book_image,
-        book_image_height = book_image_height,
-        book_image_width = book_image_width,
-        book_review_link = book_review_link,
-        book_uri = book_uri,
-        description = description,
-        publisher = publisher,
-        rank = rank,
-        rank_last_week = rank_last_week,
-        title = title,
-        weeks_on_list = weeks_on_list
-    )
-}
-
 fun BookDto.toBook(): Book {
     return Book(
         primary_isbn13 = primary_isbn13,
@@ -58,8 +39,4 @@ fun BookDto.toBook(): Book {
         title = title,
         weeks_on_list = weeks_on_list
     )
-}
-
-fun bookToEntity(books: List<Book>): List<BookEntity> {
-    return books.map { it.toBookEntity() }
 }

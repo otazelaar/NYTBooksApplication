@@ -1,5 +1,6 @@
 package com.otaz.nytbooksapplication.presentation.theme
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
@@ -13,17 +14,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
+@SuppressLint("ConflictingOnColor")
 private val LightThemeColors = lightColors(
     primary = Yellow700,
-    primaryVariant = Color.Black,
-    onPrimary = Color.Black,
-    secondary = DarkGrey,
+    primaryVariant = Yellow500,
+    onPrimary = Black2,
+    secondary = Color.White,
+    secondaryVariant = Yellow300,
     onSecondary = Color.Black,
     error = RedErrorDark,
-    background = Grey2,
+    onError = RedErrorLight,
+    background = Color.White,
     onBackground = Color.Black,
-    surface = Color.White,
-    onSurface = Color.Black,
+    surface = Grey2,
+    onSurface = Black2,
 )
 
 private val DarkThemeColors = darkColors(

@@ -14,7 +14,7 @@ import com.otaz.nytbooksapplication.R
 import com.otaz.nytbooksapplication.domain.model.Book
 
 @Composable
-fun DetailsCard(
+fun DetailCard(
     book: Book,
 ){
     Column(

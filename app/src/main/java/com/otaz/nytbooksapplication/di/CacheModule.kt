@@ -10,6 +10,12 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+/**
+ * CacheModule provides the necessary dependencies for caching such as:
+ *      - AppDatabase
+ *      - BookDao
+ */
+
 @Module
 @InstallIn(SingletonComponent::class)
 object CacheModule {

@@ -10,6 +10,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 /**
+ * GetBookListUC 
+ *
+ *
  * The following use case retrieves List<BookDto> from the network and maps them to List<BookEntity>
  *     So they can be cached in the database. List<BookEntity> needs to be cached so that the
  *     BookDetailViewModel can access them. This is necessary as the API does not have a GET request
@@ -25,7 +28,7 @@ import kotlinx.coroutines.flow.flow
  *
  */
 
-class GetBookListUC(
+class GetBookListByCategoryUC(
     private val nytApiService: NYTApiService,
     private val bookDao: BookDao,
 ) {
@@ -37,7 +40,7 @@ class GetBookListUC(
         try {
             emit(DataState.loading())
 
-            val books = getBookList(date, category, apikey)
+            val books = getBookListByCategory(date, category, apikey)
             emit(DataState.success(books))
 
             // The list of books needs to be cached in the database so that the detail screen can access them
@@ -51,9 +54,8 @@ class GetBookListUC(
 
     // This can throw an exception if there is no network connection
     // the BookEntity can be used to store them in the room database for later access by the BookDetailScreen
-
     // The following function retrieves List<BookDto> from the network and maps them to List<BookEntity> for cachin
-    private suspend fun getBookList(
+    private suspend fun getBookListByCategory(
         date: String,
         category: String,
         apikey: String,

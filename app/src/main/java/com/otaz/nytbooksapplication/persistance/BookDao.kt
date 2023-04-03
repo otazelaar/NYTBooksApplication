@@ -3,7 +3,7 @@ package com.otaz.nytbooksapplication.persistance
 import androidx.room.*
 
 /**
- *  The Long value returned by insertMovie represents whether or not the insert was successful.
+ *  The Long value returned by insertBook represents whether or not the insert was successful.
  *      If successful, it will return the row number in the database. If unsuccessful, it will
  *      return the integer -1.
  *

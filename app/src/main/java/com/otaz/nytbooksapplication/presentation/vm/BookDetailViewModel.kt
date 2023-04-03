@@ -46,7 +46,7 @@ class BookDetailViewModel @Inject constructor(
     }
 
     private fun getSavedBook(book_id: String){
-        Log.d(TAG, "SavedMoviesListViewModel: getSavedMovies: running")
+        Log.d(TAG, "SavedBookListViewModel: getSavedBook: running")
 
         getSavedBookUC.execute(
             book_id = book_id,

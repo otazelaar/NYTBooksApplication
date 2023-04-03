@@ -12,6 +12,12 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
 
+/**
+ * NetworkModule provides the necessary dependencies for the network such as:
+ *      - The New York Times API service
+ *      - API Key
+ */
+
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {

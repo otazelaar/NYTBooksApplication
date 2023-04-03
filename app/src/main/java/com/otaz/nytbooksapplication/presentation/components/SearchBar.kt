@@ -28,7 +28,7 @@ fun SearchBar(
     resetForNextSearch: () -> Unit,
     newSearchDbEvent: () -> Unit,
     onSearchQueryDbChanged: (String) -> Unit
-){
+) {
     Row(
         modifier = Modifier.fillMaxWidth()
     ) {

@@ -13,13 +13,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.FontWeight.Companion.W500
 import androidx.compose.ui.unit.dp
+import com.otaz.nytbooksapplication.presentation.ui.BookCategory
 
 @Composable
 fun BookCategoryChip(
-    category: String,
+    category: BookCategory,
     isSelected: Boolean = false,
-    onSelectedCategoryChanged: (String) -> Unit,
+    newCategorySelectedEvent: (BookCategory) -> Unit,
     newCategorySearchEvent: () -> Unit,
 ){
     Surface(
@@ -41,15 +44,16 @@ fun BookCategoryChip(
                 .toggleable(
                     value = isSelected,
                     onValueChange = {
-                        onSelectedCategoryChanged(category)
+                        newCategorySelectedEvent(category)
                         newCategorySearchEvent()
                     }
                 )
         ) {
             Text(
-                text = category,
-                style = MaterialTheme.typography.body2,
-                color = if(isSelected) Color.White else Color.Black,
+                text = category.value,
+                fontWeight = FontWeight(550),
+                style = MaterialTheme.typography.h6,
+                color = if(isSelected) MaterialTheme.colors.onSurface else MaterialTheme.colors.background,
                 modifier = Modifier
                     .padding(8.dp)
             )

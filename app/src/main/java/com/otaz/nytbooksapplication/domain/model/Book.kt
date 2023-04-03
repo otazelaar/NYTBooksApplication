@@ -2,6 +2,12 @@ package com.otaz.nytbooksapplication.domain.model
 
 import com.otaz.nytbooksapplication.persistance.BookEntity
 
+/**
+ * The [Book] data class models the data for a single book from the New York Times API.
+ *      the applications business logic.
+ *
+ */
+
 data class Book(
     val primary_isbn13: String,
     val amazon_product_url: String,
