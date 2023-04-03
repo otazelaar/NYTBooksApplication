@@ -2,11 +2,9 @@ package com.otaz.nytbooksapplication.network.model
 
 import com.google.gson.annotations.SerializedName
 import com.otaz.nytbooksapplication.domain.model.Book
-import com.otaz.nytbooksapplication.domain.model.toBookEntity
-import com.otaz.nytbooksapplication.persistance.BookEntity
 
 data class BookDto(
-    @SerializedName("primary_isbn13") var primary_isbn13: String,
+    @SerializedName("primary_isbn13") var id: String,
     @SerializedName("amazon_product_url") var amazon_product_url: String,
     @SerializedName("author") var author: String,
     @SerializedName("book_image") var book_image: String,
@@ -24,7 +22,7 @@ data class BookDto(
 
 fun BookDto.toBook(): Book {
     return Book(
-        primary_isbn13 = primary_isbn13,
+        id = id,
         amazon_product_url = amazon_product_url,
         author = author,
         book_image = book_image,

@@ -5,7 +5,7 @@ import com.otaz.nytbooksapplication.domain.model.Book
 import com.otaz.nytbooksapplication.domain.model.toBookEntity
 import com.otaz.nytbooksapplication.network.NYTApiService
 import com.otaz.nytbooksapplication.network.model.toBook
-import com.otaz.nytbooksapplication.persistance.BookDao
+import com.otaz.nytbooksapplication.db.BookDao
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 

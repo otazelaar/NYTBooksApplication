@@ -1,4 +1,4 @@
-package com.otaz.nytbooksapplication.persistance
+package com.otaz.nytbooksapplication.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

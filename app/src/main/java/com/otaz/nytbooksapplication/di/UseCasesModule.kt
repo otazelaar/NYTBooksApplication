@@ -1,7 +1,7 @@
 package com.otaz.nytbooksapplication.di
 
 import com.otaz.nytbooksapplication.network.NYTApiService
-import com.otaz.nytbooksapplication.persistance.BookDao
+import com.otaz.nytbooksapplication.db.BookDao
 import com.otaz.nytbooksapplication.use_cases.GetSavedBookUC
 import com.otaz.nytbooksapplication.use_cases.GetBookListByCategoryUC
 import com.otaz.nytbooksapplication.use_cases.SearchBookDbUC

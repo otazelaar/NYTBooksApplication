@@ -1,9 +1,8 @@
 package com.otaz.nytbooksapplication.di
 
 import androidx.room.Room
-import com.otaz.nytbooksapplication.persistance.AppDatabase
-import com.otaz.nytbooksapplication.persistance.BookDao
-import com.otaz.nytbooksapplication.persistance.BookEntity
+import com.otaz.nytbooksapplication.db.AppDatabase
+import com.otaz.nytbooksapplication.db.BookDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

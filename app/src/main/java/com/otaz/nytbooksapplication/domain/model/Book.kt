@@ -1,6 +1,6 @@
 package com.otaz.nytbooksapplication.domain.model
 
-import com.otaz.nytbooksapplication.persistance.BookEntity
+import com.otaz.nytbooksapplication.db.BookEntity
 
 /**
  * The [Book] data class models the data for a single book from the New York Times API.
@@ -9,7 +9,7 @@ import com.otaz.nytbooksapplication.persistance.BookEntity
  */
 
 data class Book(
-    val primary_isbn13: String,
+    val id: String,
     val amazon_product_url: String,
     val author: String,
     val book_image: String,
@@ -26,7 +26,7 @@ data class Book(
 )
 fun Book.toBookEntity(): BookEntity {
     return BookEntity(
-        primary_isbn13 = primary_isbn13,
+        id = id,
         amazon_product_url = amazon_product_url,
         author = author,
         book_image = book_image,

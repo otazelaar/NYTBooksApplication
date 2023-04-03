@@ -53,7 +53,7 @@ class BookDetailViewModel @Inject constructor(
         ).onEach { dataState ->
             loading.value = dataState.loading
             dataState.data?.let { data -> _savedBook.value = data
-                Log.i(TAG, "getSavedBook: Success: ${data.primary_isbn13}")
+                Log.i(TAG, "getSavedBook: Success: ${data.id}")
             }
             dataState.error?.let { error -> Log.e(TAG, "BookDetailViewModel: getSavedBook: Error $error")}
         }.launchIn(viewModelScope)

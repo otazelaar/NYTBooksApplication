@@ -43,7 +43,7 @@ fun BookList(
                     BookListView(
                         book = book,
                         onClick = {
-                            val route = Screen.BookDetail.route + "/${book.primary_isbn13}"
+                            val route = Screen.BookDetail.route + "/${book.id}"
                             onNavigateToBookDetailScreen(route)
                         },
                     )

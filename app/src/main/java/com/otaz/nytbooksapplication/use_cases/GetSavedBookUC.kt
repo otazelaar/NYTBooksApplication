@@ -2,8 +2,8 @@ package com.otaz.nytbooksapplication.use_cases
 
 import com.otaz.nytbooksapplication.domain.DataState
 import com.otaz.nytbooksapplication.domain.model.Book
-import com.otaz.nytbooksapplication.persistance.BookDao
-import com.otaz.nytbooksapplication.persistance.toBook
+import com.otaz.nytbooksapplication.db.BookDao
+import com.otaz.nytbooksapplication.db.toBook
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 

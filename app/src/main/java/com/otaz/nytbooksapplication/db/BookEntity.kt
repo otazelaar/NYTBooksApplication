@@ -1,4 +1,4 @@
-package com.otaz.nytbooksapplication.persistance
+package com.otaz.nytbooksapplication.db
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -10,7 +10,7 @@ data class BookEntity(
 
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "id")
-    val primary_isbn13: String,
+    val id: String,
 
     @ColumnInfo(name = "amazonProductUrl")
     val amazon_product_url: String,
@@ -54,7 +54,7 @@ data class BookEntity(
 
 fun BookEntity.toBook(): Book {
     return Book(
-        primary_isbn13 = primary_isbn13,
+        id = id,
         amazon_product_url = amazon_product_url,
         author = author,
         book_image = book_image,
