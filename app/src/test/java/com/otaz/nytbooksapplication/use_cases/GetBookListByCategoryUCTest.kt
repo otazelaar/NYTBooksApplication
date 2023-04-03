@@ -4,6 +4,7 @@ import com.otaz.nytbooksapplication.db.AppDatabaseFake
 import com.otaz.nytbooksapplication.db.BookDaoFake
 import com.otaz.nytbooksapplication.data.MockWebServerResponses
 import com.otaz.nytbooksapplication.network.NYTApiService
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import okhttp3.HttpUrl
 import okhttp3.mockwebserver.MockResponse
