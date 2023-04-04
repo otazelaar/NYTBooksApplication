@@ -14,7 +14,11 @@ class BookDaoFake(
         return appDatabaseFake.books.find { it.id == id }
     }
 
-    override fun loadBooks(search: String?): List<BookEntity> {
+    override suspend fun searchBooks(search: String?): List<BookEntity> {
+        return appDatabaseFake.books // return the entire list for simplicity
+    }
+
+    override suspend fun getAllBooks(): List<BookEntity> {
         return appDatabaseFake.books // return the entire list for simplicity
     }
 }

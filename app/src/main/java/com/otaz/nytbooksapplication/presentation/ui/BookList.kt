@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.otaz.nytbooksapplication.domain.model.Book
-import com.otaz.nytbooksapplication.presentation.components.ShimmerBookListCardItem
+import com.otaz.nytbooksapplication.presentation.component.ShimmerBookListCardItem
 import com.otaz.nytbooksapplication.presentation.navigation.Screen
 
 @Composable

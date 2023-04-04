@@ -1,6 +1,5 @@
 package com.otaz.nytbooksapplication.presentation.theme
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
@@ -12,13 +11,13 @@ import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.google.accompanist.systemuicontroller.SystemUiController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
-@SuppressLint("ConflictingOnColor")
 private val LightThemeColors = lightColors(
     primary = Yellow700,
     primaryVariant = Yellow500,
-    onPrimary = Black2,
+    onPrimary = Black,
     secondary = Color.White,
     secondaryVariant = Yellow300,
     onSecondary = Color.Black,
@@ -26,8 +25,8 @@ private val LightThemeColors = lightColors(
     onError = RedErrorLight,
     background = Color.White,
     onBackground = Color.Black,
-    surface = Grey2,
-    onSurface = Black2,
+    surface = Grey,
+    onSurface = Black,
 )
 
 private val DarkThemeColors = darkColors(
@@ -46,6 +45,7 @@ private val DarkThemeColors = darkColors(
 @Composable
 fun AppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
+    systemUiController: SystemUiController = rememberSystemUiController(),
     content: @Composable () -> Unit,
 ) {
     MaterialTheme(
@@ -53,17 +53,17 @@ fun AppTheme(
         typography = QuickSandTypography,
         shapes = AppShapes
     ){
-        val systemUiController = rememberSystemUiController()
         if(darkTheme){
-            systemUiController.setSystemBarsColor(Color.Transparent)
-            systemUiController.setNavigationBarColor(Color.Transparent)
-            systemUiController.setStatusBarColor(Color.Transparent)
+            systemUiController.setSystemBarsColor(
+                color = Color.Transparent
+            )
         } else{
-            systemUiController.setSystemBarsColor(Color.Transparent)
-            systemUiController.setNavigationBarColor(Color.Transparent)
-            systemUiController.setStatusBarColor(Color.Transparent)
-
+            systemUiController.setSystemBarsColor(
+                color = Color.Transparent,
+                darkIcons = true
+            )
         }
+
         Box(
             modifier = Modifier
                 .fillMaxSize()

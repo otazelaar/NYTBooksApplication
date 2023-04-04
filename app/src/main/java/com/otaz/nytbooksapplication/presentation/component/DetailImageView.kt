@@ -1,4 +1,4 @@
-package com.otaz.nytbooksapplication.presentation.components
+package com.otaz.nytbooksapplication.presentation.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -9,8 +9,8 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.otaz.nytbooksapplication.domain.model.Book
-import com.otaz.nytbooksapplication.presentation.constants.DEFAULT_BOOK_IMAGE
-import com.otaz.nytbooksapplication.presentation.constants.IMAGE_HEIGHT
+import com.otaz.nytbooksapplication.presentation.constant.DEFAULT_BOOK_IMAGE
+import com.otaz.nytbooksapplication.presentation.constant.IMAGE_HEIGHT
 
 @Composable
 fun DetailImageView(

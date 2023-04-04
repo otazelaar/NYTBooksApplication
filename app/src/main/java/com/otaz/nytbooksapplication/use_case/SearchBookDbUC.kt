@@ -1,4 +1,4 @@
-package com.otaz.nytbooksapplication.use_cases
+package com.otaz.nytbooksapplication.use_case
 
 import com.otaz.nytbooksapplication.domain.DataState
 import com.otaz.nytbooksapplication.domain.model.Book
@@ -6,6 +6,10 @@ import com.otaz.nytbooksapplication.db.BookDao
 import com.otaz.nytbooksapplication.db.entitiesToBook
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+
+/**
+ * This use case ***
+ */
 
 class SearchBookDbUC(
     private val bookDao: BookDao,
@@ -16,7 +20,7 @@ class SearchBookDbUC(
         try {
             emit(DataState.loading())
 
-            val listOfBookEntity = bookDao.loadBooks(search)
+            val listOfBookEntity = bookDao.searchBooks(search)
 
             val listOfBook = entitiesToBook(listOfBookEntity)
 

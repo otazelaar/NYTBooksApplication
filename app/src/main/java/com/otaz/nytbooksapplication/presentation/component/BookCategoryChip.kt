@@ -1,4 +1,4 @@
-package com.otaz.nytbooksapplication.presentation.components
+package com.otaz.nytbooksapplication.presentation.component
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Row
@@ -14,7 +14,6 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.font.FontWeight.Companion.W500
 import androidx.compose.ui.unit.dp
 import com.otaz.nytbooksapplication.presentation.ui.BookCategory
 
@@ -30,7 +29,7 @@ fun BookCategoryChip(
             .padding(end = 8.dp),
         elevation = 8.dp,
         shape = RoundedCornerShape(20.dp),
-        color = if(isSelected) Color.Transparent else MaterialTheme.colors.primary,
+        color = if(isSelected) MaterialTheme.colors.surface else MaterialTheme.colors.primary,
         border = BorderStroke(width = 2.dp, brush = Brush.linearGradient(
             0.0f to Color.Red,
             0.3f to Color.Green,
@@ -51,8 +50,8 @@ fun BookCategoryChip(
         ) {
             Text(
                 text = category.value,
-                fontWeight = FontWeight(550),
-                style = MaterialTheme.typography.h6,
+                fontWeight = if(isSelected) FontWeight(500) else FontWeight(400),
+                style = MaterialTheme.typography.button,
                 color = if(isSelected) MaterialTheme.colors.onSurface else MaterialTheme.colors.background,
                 modifier = Modifier
                     .padding(8.dp)

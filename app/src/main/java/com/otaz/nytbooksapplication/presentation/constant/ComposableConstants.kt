@@ -1,4 +1,4 @@
-package com.otaz.nytbooksapplication.presentation.constants
+package com.otaz.nytbooksapplication.presentation.constant
 
 import com.otaz.nytbooksapplication.R
 

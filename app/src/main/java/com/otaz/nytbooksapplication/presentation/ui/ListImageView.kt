@@ -12,8 +12,8 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.otaz.nytbooksapplication.domain.model.Book
-import com.otaz.nytbooksapplication.presentation.components.loadPicture
-import com.otaz.nytbooksapplication.presentation.constants.DEFAULT_BOOK_IMAGE
+import com.otaz.nytbooksapplication.presentation.component.loadPicture
+import com.otaz.nytbooksapplication.presentation.constant.DEFAULT_BOOK_IMAGE
 
 @Composable
 fun ListImageView(

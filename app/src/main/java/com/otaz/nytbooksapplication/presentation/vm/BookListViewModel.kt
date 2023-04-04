@@ -13,8 +13,8 @@ import com.otaz.nytbooksapplication.presentation.ui.BookCategory.*
 import com.otaz.nytbooksapplication.presentation.ui.BookListEvent
 import com.otaz.nytbooksapplication.presentation.ui.BookListEvent.*
 import com.otaz.nytbooksapplication.presentation.ui.getBookCategory
-import com.otaz.nytbooksapplication.use_cases.GetBookListByCategoryUC
-import com.otaz.nytbooksapplication.use_cases.SearchBookDbUC
+import com.otaz.nytbooksapplication.use_case.GetBookListUC
+import com.otaz.nytbooksapplication.use_case.SearchBookDbUC
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -31,13 +31,13 @@ import javax.inject.Named
 @HiltViewModel
 class BookListViewModel @Inject constructor(
     private val searchBookDbUC: SearchBookDbUC,
-    private val getBookListByCategoryUC: GetBookListByCategoryUC,
+    private val getBookListUC: GetBookListUC,
     @Named("nyt_apikey") private val apikey: String,
 ): ViewModel() {
     private val _books: MutableState<List<Book>> = mutableStateOf(ArrayList())
     val books: State<List<Book>> = _books
 
-    val selectedCategory: MutableState<BookCategory?> = mutableStateOf(null)
+    val selectedCategory: MutableState<BookCategory?> = mutableStateOf(GET_HARDCOVER_FICTION)
 
     var listScrollPosition: Int = 0
     var categoryScrollPosition: Int = 0
@@ -47,35 +47,50 @@ class BookListViewModel @Inject constructor(
 
     private val date = mutableStateOf("current")
 
-    init { getBookListByCategory() }
+    init { getBookList() }
 
     fun onTriggerEvent(event: BookListEvent){
         viewModelScope.launch {
             try {
                 when(event){
-                    is NewCategorySearchEvent -> getBookListByCategory()
+                    is NewCategorySearchEvent -> getBookList()
                     is NewSearchDbEvent -> searchBookDb()
                     is ResetForNextSearchEvent -> resetForNextSearch()
                 }
             }catch (e: Exception){
-                Log.e(TAG, "MovieListViewModel: onTriggerEvent: Exception ${e}, ${e.cause}")
+                Log.e(TAG, "BookListViewModel: onTriggerEvent: Exception ${e}, ${e.cause}")
             }
         }
     }
 
-    private fun getBookListByCategory(){
+    /**
+     * [getBookList] retrieves a list of books from the network for a specified category and date.
+     *      The books are cached
+     *      The books are collect from a flow using the DataState *** and used to update the current
+     *      list of books.
+     *
+     *      - The date will always be "current" as the purpose of the app is to be a current NYT
+     *      best seller's list.
+     *      - The category is changed depending on the user input. Each time a category is searched,
+     *      more books will be added to the database. This entire database is searched using the top
+     *      search bar. The default category is "Hardcover Fiction" so that results are present upon
+     *      opening the application.
+     *
+     *      The lifecycle of the getBookListUC is tied to this view model using viewModelScope and
+     *      will be cancelled when ViewModel.onCleared is called behind the scenes
+     *
+     */
+    private fun getBookList(){
         Log.d(TAG, "BookListViewModel: getBookList: running")
 
-        resetGetBookListByCategory()
-        var category = selectedCategory.value
-        val defaultCategory = "Hardcover Fiction"
+        resetGetBookList()
+        val currentCategory = selectedCategory.value?.value.toString()
 
-        if (category == null){
-            category = getBookCategory(defaultCategory)
-        }
-
-        getBookListByCategoryUC.execute(
-            date.value, category?.value.toString(), apikey
+        // Get books from network and collect them from the flow
+        // This flow is tied to the viewModelScope lifecycle.
+        // As a result, it is managed by
+        getBookListUC.execute(
+            date.value, currentCategory, apikey
         ).onEach { dataState ->
             isLoading.value = dataState.loading
             dataState.data?.let { list -> _books.value = list }
@@ -131,10 +146,10 @@ class BookListViewModel @Inject constructor(
     }
 
     /**
-     * This function is called when [getBookListByCategory] is executed which is triggered by [NewCategorySearchEvent].
+     * This function is called when [getBookList] is executed which is triggered by [NewCategorySearchEvent].
      * This will reset the [_books], and [selectedCategory] values for a new search.
      */
-    private fun resetGetBookListByCategory(){
+    private fun resetGetBookList(){
         _books.value = listOf()
         searchDbQuery.value = ""
         onChangedCategoryScrollPosition(0)

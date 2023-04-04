@@ -2,9 +2,9 @@ package com.otaz.nytbooksapplication.di
 
 import com.otaz.nytbooksapplication.network.NYTApiService
 import com.otaz.nytbooksapplication.db.BookDao
-import com.otaz.nytbooksapplication.use_cases.GetSavedBookUC
-import com.otaz.nytbooksapplication.use_cases.GetBookListByCategoryUC
-import com.otaz.nytbooksapplication.use_cases.SearchBookDbUC
+import com.otaz.nytbooksapplication.use_case.GetSavedBookUC
+import com.otaz.nytbooksapplication.use_case.GetBookListUC
+import com.otaz.nytbooksapplication.use_case.SearchBookDbUC
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,15 +20,15 @@ import dagger.hilt.android.scopes.ViewModelScoped
 
 @Module
 @InstallIn(ViewModelComponent::class)
-object UseCasesModule {
+object UseCaseModule {
 
     @ViewModelScoped
     @Provides
-    fun provideGetBookListByCategoryUC(
+    fun provideGetBookListUC(
         nytApiService: NYTApiService,
         bookDao: BookDao,
-    ): GetBookListByCategoryUC {
-        return GetBookListByCategoryUC(
+    ): GetBookListUC {
+        return GetBookListUC(
             nytApiService = nytApiService,
             bookDao = bookDao,
         )

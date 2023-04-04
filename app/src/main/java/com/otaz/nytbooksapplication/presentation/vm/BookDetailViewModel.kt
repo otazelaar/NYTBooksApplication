@@ -10,7 +10,7 @@ import androidx.lifecycle.viewModelScope
 import com.otaz.nytbooksapplication.domain.model.Book
 import com.otaz.nytbooksapplication.presentation.ui.BookDetailEvent
 import com.otaz.nytbooksapplication.presentation.ui.BookDetailEvent.*
-import com.otaz.nytbooksapplication.use_cases.GetSavedBookUC
+import com.otaz.nytbooksapplication.use_case.GetSavedBookUC
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

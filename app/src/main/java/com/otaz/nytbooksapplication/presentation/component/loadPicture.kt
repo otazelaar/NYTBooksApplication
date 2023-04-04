@@ -1,4 +1,4 @@
-package com.otaz.nytbooksapplication.presentation.components
+package com.otaz.nytbooksapplication.presentation.component
 
 import android.annotation.SuppressLint
 import android.graphics.Bitmap

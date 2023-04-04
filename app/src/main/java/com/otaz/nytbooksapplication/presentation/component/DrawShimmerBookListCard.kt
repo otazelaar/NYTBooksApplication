@@ -1,4 +1,4 @@
-package com.otaz.nytbooksapplication.presentation.components
+package com.otaz.nytbooksapplication.presentation.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*

@@ -9,8 +9,8 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.otaz.nytbooksapplication.presentation.components.*
-import com.otaz.nytbooksapplication.presentation.constants.IMAGE_HEIGHT
+import com.otaz.nytbooksapplication.presentation.component.*
+import com.otaz.nytbooksapplication.presentation.constant.IMAGE_HEIGHT
 import com.otaz.nytbooksapplication.presentation.theme.AppTheme
 import com.otaz.nytbooksapplication.presentation.ui.BookDetailEvent.*
 import com.otaz.nytbooksapplication.presentation.vm.BookDetailViewModel
