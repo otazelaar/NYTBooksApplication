@@ -1,6 +1,6 @@
 package com.otaz.nytbooksapplication.di
 
-import com.otaz.nytbooksapplication.network.NYTApiService
+import com.otaz.nytbooksapplication.data.network.NYTApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

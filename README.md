@@ -6,8 +6,10 @@
 - Learn information such as:
   - Author
   - Description
+  - Weeks on best seller list
 
 - Search lists using category chips to see lists
+- Search for a specific book within the category list
 
 # Features
 - Light & dark Mode to match your system preferences
@@ -15,6 +17,8 @@
 # Architecture
 - MVVM
 - Use cases
+  - for ease of testing & ViewModel readability
+- 
 
 # API
 - New York Times
@@ -28,9 +32,12 @@
 - Okhttp
 - Glide
 - Junit
+  - Used for testing use cases
 
 # What I learned?
 - Compose navigation
+- Handling UI Events
+- Context, element, variant (CEV) naming pattern by André Ferraz
 
 # Intention
 - To gain real world experience in modern android app development
