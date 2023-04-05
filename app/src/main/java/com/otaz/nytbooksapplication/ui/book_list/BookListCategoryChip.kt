@@ -42,6 +42,7 @@ fun BookListCategoryChip(
             modifier = Modifier
                 .toggleable(
                     value = isSelected,
+                    enabled = !isSelected,
                     onValueChange = {
                         newCategorySelectedEvent(category)
                         newCategorySearchEvent()
