@@ -1,10 +1,10 @@
 package com.otaz.nytbooksapplication.di
 
-import com.otaz.nytbooksapplication.network.NYTApiService
-import com.otaz.nytbooksapplication.db.BookDao
-import com.otaz.nytbooksapplication.use_case.GetSavedBookUC
-import com.otaz.nytbooksapplication.use_case.GetBookListUC
-import com.otaz.nytbooksapplication.use_case.SearchBookDbUC
+import com.otaz.nytbooksapplication.data.network.NYTApiService
+import com.otaz.nytbooksapplication.data.db.BookDao
+import com.otaz.nytbooksapplication.domain.use_case.GetSavedBookUC
+import com.otaz.nytbooksapplication.domain.use_case.GetBookListUC
+import com.otaz.nytbooksapplication.domain.use_case.SearchBookDbUC
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

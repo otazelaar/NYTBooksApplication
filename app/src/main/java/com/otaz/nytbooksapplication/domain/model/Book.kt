@@ -1,6 +1,6 @@
 package com.otaz.nytbooksapplication.domain.model
 
-import com.otaz.nytbooksapplication.db.BookEntity
+import com.otaz.nytbooksapplication.data.db.BookEntity
 
 /**
  * The [Book] data class models the data for a single book from the New York Times API.
