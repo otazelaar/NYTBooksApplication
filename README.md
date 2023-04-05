@@ -36,9 +36,6 @@
 # Intention
 - To gain real world experience in modern android app development
 
-Thanks for taking the time to look this over!
-
-Cheers,
-Owen
+Thank you for taking the time to look over my work.
 
 # www.linkedin.com/in/owentazelaar
