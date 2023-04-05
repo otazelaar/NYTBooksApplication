@@ -12,10 +12,8 @@ import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.scopes.ViewModelScoped
 
 /**
- * UseCasesModule provides the necessary dependencies for each use case:
- *      - GetBookListUC
- *      - GetSavedBook
- *      - SearchBookDBUC
+ * Provides dependencies [provideGetBookListUC], [provideGetSavedBook], & [provideSearchBookDbUC]
+ * to the use cases for retrieving data from the network and room database
  */
 
 @Module

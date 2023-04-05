@@ -20,14 +20,8 @@ import java.net.HttpURLConnection
 
 /**
  * The system in test is use case: [GetBookListUCTest]
- *
- *      The plan for testing mirrors that use case and is ordered as follows:
- *      1. Test that loading status is emitted
- *      2. Test if cache is empty to start
- *      3. Test if cache is no longer empty after executing use case
- *          a. if complete, this means the network operation is complete and all the queries are working properly
- *      4. Test that data, List<Book>, is emitted as a flow from the cache to the UI
- *      5. Test that loading status is changed to false
+ * Test [responseNormalData]: Passed
+ * Test [responseMalformedData]: failed as expected
  */
 
 class GetBookListUCTest {
@@ -72,7 +66,7 @@ class GetBookListUCTest {
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(HttpURLConnection.HTTP_OK)
-                .setBody(MockWebServerResponses.response)
+                .setBody(MockWebServerResponses.responseMalformedData)
         )
 
         // toList() will simulate flow emission

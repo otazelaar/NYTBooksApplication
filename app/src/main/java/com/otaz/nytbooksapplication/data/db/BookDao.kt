@@ -2,23 +2,21 @@ package com.otaz.nytbooksapplication.data.db
 
 import androidx.room.*
 
-/**
- *  The Long value returned by insertBook represents whether or not the insert was successful.
- *      If successful, it will return the row number in the database. If unsuccessful, it will
- *      return the integer -1.
- */
-
 @Dao
 interface BookDao {
 
     /**
      * insertBooks() will insert a Book if it does not already exist and update those that are
-     *      already there. It does this by checking the PrimaryKey which is set to the ISBN13
-     *      number. This number is specific to each book. However, it does not delete old books in the
-     *      database. As a result, the database will continue to hold old books no longer present on the
-     *      current best seller list. This will result in the loadBooks() function becoming incorrect as
-     *      time goes on.
-     */
+     * already there. It does this by checking the PrimaryKey which is set to the ISBN13 number.
+     * This number is specific to each book. However, it does not delete old books in the database.
+     * As a result, the database will continue to hold old books no longer present on the current
+     * best seller list. This will result in the loadBooks() function becoming incorrect as time
+     * goes on.
+     *
+     * The Long value returned by insertBook represents whether or not the insert was successful.
+     * If successful, it will return the row number in the database. If unsuccessful, it will
+     * return the integer -1.
+    */
     @Upsert
     suspend fun insertBooks(books: List<BookEntity>): LongArray
 

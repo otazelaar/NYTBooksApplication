@@ -3,6 +3,9 @@ package com.otaz.nytbooksapplication.di
 import androidx.room.Room
 import com.otaz.nytbooksapplication.data.db.AppDatabase
 import com.otaz.nytbooksapplication.data.db.BookDao
+import com.otaz.nytbooksapplication.di.UseCaseModule.provideGetBookListUC
+import com.otaz.nytbooksapplication.di.UseCaseModule.provideGetSavedBook
+import com.otaz.nytbooksapplication.di.UseCaseModule.provideSearchBookDbUC
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -10,9 +13,7 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 /**
- * CacheModule provides the necessary dependencies for caching such as:
- *      - AppDatabase
- *      - BookDao
+ * Provides dependencies [provideDb] & [provideBookDao] for caching in the Room database.
  */
 
 @Module

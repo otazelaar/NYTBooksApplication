@@ -6,10 +6,10 @@
 - Learn information such as:
   - Author
   - Description
-  - Weeks on best seller list
+  - Number of weeks on best seller list
 
-- Search lists using category chips to see lists
-- Search for a specific book within the category list
+- Search various categories of books
+- Search for a specific book within the category list you are on
 
 # Features
 - Light & dark Mode to match your system preferences
@@ -17,8 +17,7 @@
 # Architecture
 - MVVM
 - Use cases
-  - for ease of testing & ViewModel readability
-- 
+  - For ease of testing & ViewModel readability
 
 # API
 - New York Times

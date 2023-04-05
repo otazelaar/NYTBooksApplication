@@ -3,6 +3,9 @@ package com.otaz.nytbooksapplication.data.db
 import androidx.room.Database
 import androidx.room.RoomDatabase
 
+/**
+ * Room database for the application
+ */
 @Database(entities = [BookEntity::class], version = 1)
 abstract class AppDatabase: RoomDatabase(){
 

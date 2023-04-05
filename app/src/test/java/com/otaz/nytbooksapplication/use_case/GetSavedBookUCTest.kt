@@ -21,10 +21,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.net.HttpURLConnection
 
 /**
- * This test ***
- *      This test uses the MockWebServer to populate the list of books in the database despite
- *      the actual GetSavedBookUC not using the network. This is because this use case depends on
- *      the application populating the default "Hardcover Fiction" list on launch.
+ * This test uses the MockWebServer to populate the list of books in the database despite
+ * the actual GetSavedBookUC not using the network. This is because this use case depends on
+ * the application populating the default "Hardcover Fiction" list on launch.
  */
 
 class GetSavedBookUCTest {
@@ -81,7 +80,7 @@ class GetSavedBookUCTest {
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(HttpURLConnection.HTTP_OK)
-                .setBody(MockWebServerResponses.response)
+                .setBody(MockWebServerResponses.responseNormalData)
         )
 
         // confirm the cache is empty to start
@@ -113,8 +112,8 @@ class GetSavedBookUCTest {
 
 
     /**
-     * 1. Try to get a book that does not exist in the cache. Use case should fail.
-     * Result should be:
+     * This test will attempt to get a book that does not exist in the cache. Use case should fail.
+     * Result:
      *      1. List of books are retrieved from network and inserted into cache
      *      2. Failure to get book from cache because BOOK_ID_NULL does not exist
      */
@@ -125,7 +124,7 @@ class GetSavedBookUCTest {
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(HttpURLConnection.HTTP_OK)
-                .setBody(MockWebServerResponses.response)
+                .setBody(MockWebServerResponses.responseNormalData)
         )
 
         // confirm the cache is empty to start

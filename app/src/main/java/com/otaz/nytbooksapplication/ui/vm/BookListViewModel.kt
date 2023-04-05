@@ -8,12 +8,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.otaz.nytbooksapplication.domain.model.Book
-import com.otaz.nytbooksapplication.ui.BookCategory.*
+import com.otaz.nytbooksapplication.ui.util.BookCategory
 import com.otaz.nytbooksapplication.ui.event.BookListEvent
 import com.otaz.nytbooksapplication.ui.event.BookListEvent.*
 import com.otaz.nytbooksapplication.domain.use_case.GetBookListUC
 import com.otaz.nytbooksapplication.domain.use_case.SearchBookDbUC
-import com.otaz.nytbooksapplication.ui.BookCategory
+import com.otaz.nytbooksapplication.ui.util.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -21,14 +21,6 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Named
-
-/**
- * BookListViewModel...
- * 
- *      How do I know that the flow is giving us one result? if i click on a button a few times too
- *      fast, it results in too many Http requests.
- *
- */
 
 @HiltViewModel
 class BookListViewModel @Inject constructor(
@@ -39,7 +31,7 @@ class BookListViewModel @Inject constructor(
     private val _books: MutableState<List<Book>> = mutableStateOf(ArrayList())
     val books: State<List<Book>> = _books
 
-    val selectedCategory: MutableState<BookCategory?> = mutableStateOf(GET_HARDCOVER_FICTION)
+    val selectedCategory: MutableState<BookCategory?> = mutableStateOf(BookCategory.GET_HARDCOVER_FICTION)
 
     private var listScrollPosition: Int = 0
     private var categoryScrollPosition: Int = 0
@@ -51,6 +43,9 @@ class BookListViewModel @Inject constructor(
 
     init { getBookList() }
 
+    /**
+     * Decides which events trigger which functions.
+     */
     fun onTriggerEvent(event: BookListEvent){
         viewModelScope.launch {
             try {
@@ -67,22 +62,24 @@ class BookListViewModel @Inject constructor(
 
     /**
      * [getBookList] retrieves a list of books from the network for a specified category and date.
-     *      The books are cached
-     *      The books are collect from a flow using the DataState *** and used to update the current
-     *      list of books.
+     * [getBookList] is executed when [NewCategorySearchEvent] is triggered by the user selecting
+     * a category. It is important to note that if the [NewCategorySearchEvent] is triggered too
+     * many times from someone pressing the button too often, it will cause an error of too many
+     * Http requests causing the data to not populate. With more time, this error will be fixed.
      *
-     *      - The date will always be "current" as the purpose of the app is to be a current NYT
-     *      best seller's list.
-     *      - The category is changed depending on the user input. Each time a category is searched,
-     *      more books will be added to the database. This entire database is searched using the top
-     *      search bar. The default category is "Hardcover Fiction" so that results are present upon
-     *      opening the application.
+     * The books are collect from a flow used to update the current list of books.
      *
-     *      The lifecycle of the getBookListUC is tied to this view model using viewModelScope and
-     *      will be cancelled when ViewModel.onCleared is called behind the scenes
+     * The date will be set to a default "current" as the purpose of the app is to be a current NYT
+     * best seller's list.
      *
-     *      Please see GetBookListUC for comments for more information.
+     * The category is changed depending on the user input. Each time a category is searched, more
+     * books will be added to the database. This entire database is searched using the top search
+     * bar. The default category is "Hardcover Fiction" so that a list of books is already populated
+     * upon launching the application.
      *
+     * The lifecycle of the getBookListUC is tied to this view model using viewModelScope
+     *
+     * Please see GetBookListUC for comments for more information.
      */
     private fun getBookList(){
         Log.d(TAG, "BookListViewModel: getBookList: running")
@@ -102,6 +99,12 @@ class BookListViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
+    /**
+     * [searchBookDb] is executed when [NewSearchDbEvent] is triggered. This function calls the
+     * [searchBookDbUC] which retrieves a List<BookEntity> from the database most alike the user input
+     *  called [searchDbQuery]. The List<BookEntity> is then mapped to List<Book> to update the
+     *  state of [_books] to be displayed in the UI.
+     */
     private fun searchBookDb(){
         Log.d(TAG, "BookListViewModel: searchBookDb: running")
 
@@ -116,22 +119,30 @@ class BookListViewModel @Inject constructor(
         }.launchIn(CoroutineScope(Dispatchers.IO))
     }
 
+    /**
+     * Updates the selected category value
+     */
     fun onSelectedCategoryChanged(category: BookCategory?){
-        setCategory(category)
-    }
-
-    private fun setCategory(category: BookCategory?) {
         this.selectedCategory.value = category
     }
 
+    /**
+     * Updates scroll position of the category list
+     */
     fun onChangedCategoryScrollPosition(position: Int){
         categoryScrollPosition = position
     }
 
+    /**
+     * Updates scroll position of the book list
+     */
     fun onChangedBookScrollPosition(position: Int){
         listScrollPosition = position
     }
 
+    /**
+     * Updates the search query value with the user input.
+     */
     fun onSearchQueryDbChanged(query: String){
         setSearchQueryDb(query)
     }
@@ -172,11 +183,17 @@ class BookListViewModel @Inject constructor(
         if(selectedCategory.value?.value != searchDbQuery.value) clearSelectedCategory()
     }
 
+    /**
+     * This function clears the selected category value.
+     */
     private fun clearSelectedCategory(){
-        setCategory(null)
+        onSelectedCategoryChanged(null)
         selectedCategory.value = null
     }
 
+    /**
+     * This function clears the search query for new input.
+     */
     private fun setSearchQueryDb(query: String){
         this.searchDbQuery.value = query
     }

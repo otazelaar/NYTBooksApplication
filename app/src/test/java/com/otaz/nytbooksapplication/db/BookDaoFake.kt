@@ -3,6 +3,9 @@ package com.otaz.nytbooksapplication.db
 import com.otaz.nytbooksapplication.data.db.BookDao
 import com.otaz.nytbooksapplication.data.db.BookEntity
 
+/**
+ * Fake DAO for testing
+ */
 class BookDaoFake(
     private val appDatabaseFake: AppDatabaseFake
 ) : BookDao {

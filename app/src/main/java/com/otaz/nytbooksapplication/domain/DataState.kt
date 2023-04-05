@@ -1,7 +1,7 @@
 package com.otaz.nytbooksapplication.domain
 
 /**
- * T represents Data
+ * Returns network call with status
  */
 data class DataState<out T>(
     val data:T? = null,

@@ -20,6 +20,10 @@ data class BookDto(
     @SerializedName("weeks_on_list") var weeks_on_list: Int
 )
 
+/**
+ * Maps the data transfer object to the domain where it is the data is
+ * used as the core business logic for the application.
+ */
 fun BookDto.toBook(): Book {
     return Book(
         id = id,

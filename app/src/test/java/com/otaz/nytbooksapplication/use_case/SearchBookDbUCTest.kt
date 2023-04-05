@@ -22,16 +22,6 @@ import java.net.HttpURLConnection
 
 /**
  * The system in test is use case: [SearchBookDbUC]
- *
- * The plan for testing mirrors the use case except for populating the database.
- *
- * Testing is ordered as follows:
- *      1. Test that loading status is emitted
- *      2. Test if cache is empty to start
- *      3. Test if cache is no longer empty after executing use case
- *          a. if complete, this means the network operation is complete and all the queries are working properly
- *      4. Test that data, List<Book>, is emitted as a flow from the cache to the UI
- *      5. Test that loading status is changed to false
  */
 
 class SearchBookDbUCTest {
@@ -78,11 +68,6 @@ class SearchBookDbUCTest {
         )
     }
 
-    /**
-     * 1. Are the books retrieved from the network?
-     * 2. Are the books inserted into the cache?
-     * 3. Are the books then emitted as a flow from the cache?
-     */
     @Test
     fun getBooksFromNetwork_emitBooksFromCache(): Unit = runBlocking {
 
@@ -90,7 +75,7 @@ class SearchBookDbUCTest {
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(HttpURLConnection.HTTP_OK)
-                .setBody(MockWebServerResponses.response)
+                .setBody(MockWebServerResponses.responseNormalData)
         )
 
         // confirm the cache is empty to start
@@ -119,14 +104,9 @@ class SearchBookDbUCTest {
         assert(!flowBooks[1].loading)
     }
 
-
     /**
-     * Simulate a null search
-     */
-
-    /**
-     * 1. Try to search for a book that does not exist in the cache
-     * Result should be:
+     * This test will attempt to search for a book that does not exist in the cache
+     * Result:
      *      1. List of books are retrieved from network and inserted into cache
      *      2. Book is returned as flow from cache
      */
@@ -136,7 +116,7 @@ class SearchBookDbUCTest {
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(HttpURLConnection.HTTP_OK)
-                .setBody(MockWebServerResponses.response)
+                .setBody(MockWebServerResponses.responseNormalData)
         )
 
         // confirm the cache is empty to start

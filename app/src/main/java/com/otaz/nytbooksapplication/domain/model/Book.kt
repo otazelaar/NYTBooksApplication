@@ -3,9 +3,8 @@ package com.otaz.nytbooksapplication.domain.model
 import com.otaz.nytbooksapplication.data.db.BookEntity
 
 /**
- * The [Book] data class models the data for a single book from the New York Times API.
- *      the applications business logic.
- *
+ * The [Book] data class models the data for a single book from the New York Times API. This model
+ * contains this applications core business logic.
  */
 
 data class Book(
@@ -24,6 +23,10 @@ data class Book(
     val title: String,
     val weeks_on_list: Int
 )
+
+/**
+ * Maps [Book] to [BookEntity] so that the data can be cached in the room database
+ */
 fun Book.toBookEntity(): BookEntity {
     return BookEntity(
         id = id,

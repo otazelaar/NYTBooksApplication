@@ -2,6 +2,11 @@ package com.otaz.nytbooksapplication.ui.util
 
 import com.otaz.nytbooksapplication.ui.util.BookCategory.*
 
+/**
+ * Contains all New York Times API best seller's categories. Each category is associated with a list
+ * of around 15 books. The associated strings for each category are used for querying the API as
+ * well as for titling each BookListCategoryChip listed in the BookListTopAppBar.
+ */
 enum class BookCategory(val value: String){
     GET_HARDCOVER_FICTION("Hardcover Fiction"),
     GET_HARDCOVER_NONFICTION("Hardcover Nonfiction"),
@@ -37,6 +42,10 @@ enum class BookCategory(val value: String){
     GET_TRAVEL("Travel"),
 }
 
+/**
+ * This function helps convert the BookCategory to its associated string value for use as title in
+ * the UI and for querying the API for the results of a specified category.
+ */
 fun getAllBookCategories(): List<BookCategory>{
     return listOf(
         GET_HARDCOVER_FICTION,
@@ -72,9 +81,4 @@ fun getAllBookCategories(): List<BookCategory>{
         GET_SPORTS,
         GET_TRAVEL
     )
-}
-
-fun getBookCategory(value: String): BookCategory? {
-    val map = values().associateBy(BookCategory::value)
-    return map[value]
 }

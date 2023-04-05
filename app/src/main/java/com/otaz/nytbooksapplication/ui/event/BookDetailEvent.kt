@@ -1,9 +1,8 @@
 package com.otaz.nytbooksapplication.ui.event
 
 /**
- * This class is used to trigger events related to the BookDetails
+ * This class is used to trigger events related to the BookDetailViewModel
  */
-
 sealed class BookDetailEvent {
 
     data class GetBookDetailEvent(

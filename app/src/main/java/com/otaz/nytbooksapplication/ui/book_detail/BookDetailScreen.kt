@@ -27,7 +27,7 @@ fun BookDetailScreen(
             padding = 8.dp
         )
     } else {
-        // fire a one-off event to get the recipe from api
+        // fire a one-off event to get the book from api
         val onLoad = viewModel.onLoad.value
         if (!onLoad) {
             viewModel.onLoad.value = true
