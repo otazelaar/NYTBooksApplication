@@ -56,13 +56,11 @@ class SearchBookDbUCTest {
 
         bookDao = BookDaoFake(appDatabaseFake = appDatabase)
 
-        // to populate database
         getBookListUC = GetBookListUC(
             nytApiService = nytApiService,
             bookDao = bookDao,
         )
 
-        // instantiate the system in test
         searchBookDbUC = SearchBookDbUC(
             bookDao = bookDao,
         )
@@ -70,15 +68,12 @@ class SearchBookDbUCTest {
 
     @Test
     fun getBooksFromNetwork_emitBooksFromCache(): Unit = runBlocking {
-
-        // condition the response
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(HttpURLConnection.HTTP_OK)
                 .setBody(MockWebServerResponses.responseNormalData)
         )
 
-        // confirm the cache is empty to start
         assert(bookDao.getAllBooks().isEmpty())
 
         // get books from network and insert into cache
@@ -87,20 +82,15 @@ class SearchBookDbUCTest {
 
         val flowBooks = searchBookDbUC.execute(FAKE_QUERY_EXISTENT).toList()
 
-        // confirm the cache is no longer empty
         assert(bookDao.getAllBooks().isNotEmpty())
 
-        // first emission should be `loading`
         assert(flowBooks[0].loading)
 
-        // Second emission should be the list of books
         val books = flowBooks[1].data
         assert((books?.size ?: 0) > 0)
 
-        // confirm they are actually Book objects
         assert(books?.get(index = 0) is Book)
 
-        // loading should be false now
         assert(!flowBooks[1].loading)
     }
 
@@ -112,35 +102,28 @@ class SearchBookDbUCTest {
      */
     @Test
     fun attemptSearchNullBookFromCache_searchBooks(): Unit = runBlocking {
-        // condition the response
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(HttpURLConnection.HTTP_OK)
                 .setBody(MockWebServerResponses.responseNormalData)
         )
 
-        // confirm the cache is empty to start
         assert(bookDao.getAllBooks().isEmpty())
 
         // get books from network and insert into cache
         // in real UC, no network call is made as this data is assumed to be stored in the cache already
         getBookListUC.execute(FAKE_DATE, FAKE_CATEGORY, FAKE_APIKEY).toList()
 
-        // confirm the cache is no longer empty
         val cachedBookEntities = bookDao.getAllBooks()
         assert(cachedBookEntities.isNotEmpty())
 
-        // run use case in test using a query that does not exist in the database
         val bookFlow = searchBookDbUC.execute(FAKE_QUERY_NONEXISTENT).toList()
 
-        // first emission should be `loading`
         assert(bookFlow[0].loading)
 
-        // Second emission should be an error
         val error = bookFlow[1].error
         assert(error != null)
 
-        // 'loading' should be false now
         assert(!bookFlow[1].loading)
     }
 

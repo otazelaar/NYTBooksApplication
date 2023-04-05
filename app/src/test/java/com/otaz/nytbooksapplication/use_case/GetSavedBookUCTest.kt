@@ -40,7 +40,6 @@ class GetSavedBookUCTest {
     private val FAKE_BOOK_ID_EXISTENT = "9781984804495"
     private val FAKE_BOOK_ID_NONEXISTENT = ""
 
-
     // Dependencies
     private lateinit var getBookListUC: GetBookListUC
     private lateinit var nytApiService: NYTApiService
@@ -58,13 +57,11 @@ class GetSavedBookUCTest {
             .create(NYTApiService::class.java)
         bookDao = BookDaoFake(appDatabaseFake = appDatabase)
 
-        // to populate database
         getBookListUC = GetBookListUC(
             nytApiService = nytApiService,
             bookDao = bookDao,
         )
 
-        // instantiate the system in test
         getSavedBookUC = GetSavedBookUC(
             bookDao = bookDao,
         )
@@ -76,37 +73,29 @@ class GetSavedBookUCTest {
      */
     @Test
     fun getBooksFromCache_getBookById(): Unit = runBlocking {
-        // condition the response
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(HttpURLConnection.HTTP_OK)
                 .setBody(MockWebServerResponses.responseNormalData)
         )
 
-        // confirm the cache is empty to start
         assert(bookDao.getAllBooks().isEmpty())
 
         // get books from network and insert into cache
         // in real UC, no network call is made as this data is assumed to be stored in the cache already
         getBookListUC.execute(FAKE_DATE, FAKE_CATEGORY, FAKE_APIKEY).toList()
 
-        // confirm the cache is no longer empty
         assert(bookDao.getAllBooks().isNotEmpty())
 
-        // run use case
         val bookAsFlow = getSavedBookUC.execute(FAKE_BOOK_ID_EXISTENT).toList()
 
-        // first emission should be `loading`
         assert(bookAsFlow[0].loading)
 
-        // second emission should be the book
         val book = bookAsFlow[1].data
         assert(book?.id == FAKE_BOOK_ID_EXISTENT)
 
-        // confirm it is actually a Book object
         assert(book is Book)
 
-        // 'loading' should be false now
         assert(!bookAsFlow[1].loading)
     }
 
@@ -120,27 +109,23 @@ class GetSavedBookUCTest {
 
     @Test
     fun attemptGetNullBookFromCache_getBookById(): Unit = runBlocking {
-        // condition the response
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(HttpURLConnection.HTTP_OK)
                 .setBody(MockWebServerResponses.responseNormalData)
         )
 
-        // confirm the cache is empty to start
         assert(bookDao.getAllBooks().isEmpty())
 
         // get books from network and insert into cache
         // in real UC, no network call is made as this data is assumed to be stored in the cache already
         getBookListUC.execute(FAKE_DATE, FAKE_CATEGORY, FAKE_APIKEY).toList()
 
-        // confirm the cache is no longer empty
         assert(bookDao.getAllBooks().isNotEmpty())
 
         // run use case with an ID that does not exist in the database
         val bookFlow = getSavedBookUC.execute(FAKE_BOOK_ID_NONEXISTENT).toList()
 
-        // first emission should be `loading`
         assert(bookFlow[0].loading)
 
         // Second emission should be an error
@@ -150,7 +135,6 @@ class GetSavedBookUCTest {
         // confirm their is no book in the cache that matches the ID used
         assert(bookDao.getBookById(FAKE_BOOK_ID_EXISTENT)?.id != FAKE_BOOK_ID_NONEXISTENT)
 
-        // Confirm that loading is false
         assert(!bookFlow[1].loading)
     }
 

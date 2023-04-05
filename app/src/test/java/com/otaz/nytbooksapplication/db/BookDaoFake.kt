@@ -21,10 +21,10 @@ class BookDaoFake(
     }
 
     override suspend fun searchBooks(search: String?): List<BookEntity> {
-        return appDatabaseFake.books // return the entire list for simplicity
+        return appDatabaseFake.books
     }
 
     override suspend fun getAllBooks(): List<BookEntity> {
-        return appDatabaseFake.books // return the entire list for simplicity
+        return appDatabaseFake.books
     }
 }

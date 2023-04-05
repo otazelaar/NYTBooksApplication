@@ -7,7 +7,6 @@ object AndroidX {
   const val constraint_layout = "androidx.constraintlayout:constraintlayout:${Versions.constraint_layout}"
   const val ui_tooling = "androidx.ui:ui-tooling:${Versions.androidx_ui}"
 
-  // we will remove these 2 dependencies later when building the compose-only nav system
   const val nav_fragment_ktx = "androidx.navigation:navigation-fragment-ktx:${Versions.nav_component}"
   const val nav_ui_ktx = "androidx.navigation:navigation-ui-ktx:${Versions.nav_component}"
 
@@ -24,8 +23,7 @@ object AndroidX {
 
   const val navigation_compose = "androidx.navigation:navigation-compose:${Versions.nav_compose}"
 
-//  const val navigation_hilt = "androidx.hilt:hilt-navigation:${Versions.hilt_navigation}"
-  const val navigation_hilt = "androidx.hilt:hilt-navigation-compose:${Versions.hilt_navigation}" // might not work
+  const val navigation_hilt = "androidx.hilt:hilt-navigation-compose:${Versions.hilt_navigation}"
 
   const val room_runtime = "androidx.room:room-runtime:${Versions.room}"
   const val room_ktx = "androidx.room:room-ktx:${Versions.room}"

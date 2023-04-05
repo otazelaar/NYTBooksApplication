@@ -52,7 +52,6 @@ class GetBookListUCTest {
 
         bookDao = BookDaoFake(appDatabase)
 
-        // Instantiate the system in test
         getBookListUC = GetBookListUC(
             nytApiService = nytApiService,
             bookDao = bookDao,
@@ -61,42 +60,32 @@ class GetBookListUCTest {
 
     @Test
     fun getBooksFromNetwork_emitBooksFromCache(): Unit = runBlocking{
-        // condition the response that you would normally return from a mock web server
-        // mockWebServer is configured to return a successful response
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(HttpURLConnection.HTTP_OK)
                 .setBody(MockWebServerResponses.responseMalformedData)
         )
 
-        // toList() will simulate flow emission
         val flowItems = getBookListUC.execute(
             date = FAKE_DATE,
             category = FAKE_CATEGORY,
             apikey = FAKE_APIKEY,
         ).toList()
 
-        // Confirm the cache is filled
         assert(bookDao.getAllBooks().isNotEmpty())
 
-        // First emission should be LOADING
         assert(flowItems[0].loading)
 
-        // Second emission should be the list of books
-        // We are checking if the listed of books emitted is greater than 0
         val booksFlow = flowItems[1].data
         assert((booksFlow?.size ?: 0) > 0)
 
-        // Confirm they are actually Book objects
         assert(booksFlow?.get(index = 0) is Book)
 
-        // Confirm that loading is false
         assert(!flowItems[1].loading)
     }
 
     @Test
     fun getBooksFromNetwork_emitHttpError(): Unit = runBlocking {
-        // mockWebServer is configured to return the an error response
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(HttpURLConnection.HTTP_BAD_REQUEST)
@@ -109,14 +98,11 @@ class GetBookListUCTest {
             apikey = FAKE_APIKEY,
         ).toList()
 
-        // First emission should be LOADING
         assert(flowItems[0].loading)
 
-        // Second emission should be an error
         val error = flowItems[1].error
         assert(error != null)
 
-        // Confirm that loading is false
         assert(!flowItems[1].loading)
     }
 

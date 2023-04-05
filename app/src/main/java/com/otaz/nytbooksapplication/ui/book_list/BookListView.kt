@@ -48,11 +48,6 @@ fun BookListView(
 
 fun decapitalizeTitle(title: String): String {
 
-    // The following code is only capitalizing the first character of the String and is not able
-    // to capitalize the other words in the Title. Keep in mind that it should ignore "and"
-    // Also, this is UI logic. should this be managed here on BookListView or elsewhere?
-    // my gut says here on BookListView.
-
     fun String.titlecaseFirstCharIfItIsLowercase() = replaceFirstChar {
         if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
     }
