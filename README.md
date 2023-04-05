@@ -33,11 +33,6 @@
 - Junit
   - Used for testing use cases
 
-# What I learned?
-- Compose navigation
-- Handling UI Events
-- Context, element, variant (CEV) naming pattern by André Ferraz
-
 # Intention
 - To gain real world experience in modern android app development
 
