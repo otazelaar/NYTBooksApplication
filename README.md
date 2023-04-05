@@ -33,17 +33,9 @@
 - Junit
   - Used for testing use cases
 
-# What I learned?
-- Compose navigation
-- Handling UI Events
-- Context, element, variant (CEV) naming pattern by André Ferraz
-
 # Intention
 - To gain real world experience in modern android app development
 
-Thanks for taking the time to look this over!
-
-Cheers,
-Owen
+Thank you for taking the time to look over my work.
 
 # www.linkedin.com/in/owentazelaar
