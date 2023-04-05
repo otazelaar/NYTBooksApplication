@@ -1,5 +1,5 @@
 # www.linkedin.com/in/owentazelaar
-# New York Times Best Seller's List BMobile Application
+# New York Times Best Seller's List Mobile Application
 
 - Check out the current list of books from the New York Times best seller's collection 
 
